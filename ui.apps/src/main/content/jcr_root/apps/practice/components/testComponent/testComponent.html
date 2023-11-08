@@ -1,0 +1,20 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+<sly data-sly-call="${clientLib.all @ categories='aaqib'}"></sly>
+<div class="parent">
+    <h1>Hello World!</h1>
+    <h1>${properties.fname}</h1>
+    <h1>${properties.lastName}</h1>
+    <div  data-sly-use.multifieldValues="com.javadoubts.core.models.TestComponent">
+        <table>
+            <div data-sly-list.itemvalue="${multifieldValues.stateInfo}">
+                <td class="columns-align">
+                    <h4>${itemvalue.state}</h4>
+                    <div data-sly-list.nestedItemValue ="${itemvalue.cityInfo}">
+                        <p>${nestedItemValue.city}</p>
+                        <p>${nestedItemValue.zipcode}</p>
+                    </div>
+                </td>
+            </div>
+        </table>
+    </div>
+</div>

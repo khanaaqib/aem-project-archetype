@@ -1,0 +1,12 @@
+<h1>tab Placeholder</h1>
+<h1>${properties.title}</h1>
+<h1>${properties.desc}</h1>
+<div data-sly-use.parentField ="com.javadoubts.core.models.TabModel">
+    <ul data-sly-list.parenttitle="${parentField.tab1}">
+        <li style="background-color:red;">${parenttitle.tab1title}</li>
+        <ul data-sly-list.childInfo="${parenttitle.nestedTabInfo}">
+            <li>${childInfo.nestedTitle}</li>
+            <li>${childInfo.link}</li>
+        </ul>
+    </ul>
+</div>

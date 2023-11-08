@@ -1,0 +1,12 @@
+
+<h1>Placeholder</h1>
+<h1>${properties.fname}</h1>
+<div data-sly-use.mfnode="com.javadoubts.core.models.FirstCustomComponentModel">
+    <ul data-sly-list.itemvalues="${mfnode.contact}">
+        <li>${itemvalues.state}</li>
+        <ul data-sly-list.nestedItemValue = "${itemvalues.cityInfo}">
+            <li>${nestedItemValue.city}</li>
+            <li>${nestedItemValue.zipcode}</li>
+        </ul>
+    </ul>
+</div>

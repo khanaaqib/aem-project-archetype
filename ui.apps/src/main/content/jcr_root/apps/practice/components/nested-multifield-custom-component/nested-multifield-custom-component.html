@@ -1,0 +1,10 @@
+
+<h1>Placeholder</h1>
+<div data-sly-use.mfnode="com.javadoubts.core.models.DemoModel">
+    <ul data-sly-list.itemvalues="${mfnode.contact}">
+        <li>${itemvalues.email}</li>
+        <ul data-sly-list.nestedValue="${itemvalues.nestedMultifield}">
+            <li>${nestedValue.phoneNumber}</li>
+    </ul>
+</ul>
+</div>
