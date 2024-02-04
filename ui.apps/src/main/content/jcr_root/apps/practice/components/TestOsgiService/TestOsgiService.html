@@ -1,0 +1,8 @@
+<h1>TEST OSGI SERVICE PLACEHOLDER</h1>
+<div data-sly-use.fetchCOnfigData="com.javadoubts.core.models.TestConfigModel">
+    <h4>${fetchCOnfigData.fname}</h4>
+    <h4>${fetchCOnfigData.lname}</h4>
+    <ul data-sly-list.emailValue ="${fetchCOnfigData.email}">
+        <li>${emailValue}</li>
+    </ul>
+</div>

@@ -1,0 +1,31 @@
+
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+<sly data-sly-call="${clientLib.all @ categories='user-data-form'}"></sly>
+
+<h1>User Data Table</h1>
+<form id="customers" data-sly-use.dataFetch="com.javadoubts.core.models.DataModel" >
+<table class="table custom-data-table dataTable">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>User Info</th>
+        </tr>
+    </thead>
+    <tbody>
+    <div data-sly-list.childInfo="${dataFetch.message}">
+        <tr>
+            <td>${childInfo.firstName}</td>
+            <td>${childInfo.lastName}</td>
+            <td>${childInfo.Email}</td>
+            <td>${childInfo.phoneNumber}</td>
+            <td><input type="submit" id ="user-info-btn" value="Submit"></td>
+        </tr>
+    </div>
+ </tbody>
+</table>
+</form>
+
+

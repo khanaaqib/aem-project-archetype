@@ -12,13 +12,12 @@
                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                 fieldLabel="FirstName"
                 name="./fname"
-                validation="firstname-validation"/>
+                validation="fname-validation"/>
             <lastName
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                 fieldLabel="LastName"
-                name="./lastName"
-                validation="lastname-validation"/>
+                name="./lastName"/>
             <stateInfo
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"

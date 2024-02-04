@@ -1,0 +1,18 @@
+<h1> DO POST SERVLET</h1>
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+<sly data-sly-call="${clientLib.all @ categories='do-post-form'}"></sly>
+
+<div>
+<form>
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="lname">Last name:</label>
+    <input type="text" id="lname" name="lname"><br><br>
+    <label for="contactNo">Contact Number:</label>
+    <input type="text" id="contactNo" name="contactNo"><br><br>
+    <label for="email">Email Address:</label>
+    <input type="text" id="email" name="email"><br><br>
+    <input type="submit" value="Submit" id="post-submit-btn">
+</form>
+
+</div>

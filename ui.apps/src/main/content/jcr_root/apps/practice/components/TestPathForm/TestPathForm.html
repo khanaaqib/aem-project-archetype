@@ -1,0 +1,12 @@
+
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+<sly data-sly-call="${clientLib.js @ categories='testformcheck'}"></sly>
+<h1>Test Form PlaceHolder</h1>
+<form>
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" value="John"><br>
+    <p id="firstNameerror" style="display:none;">Please add the first name field</p>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname" value="Doe"><br><br>
+    <input type="submit" value="Submit" id="submit-btn">
+</form>

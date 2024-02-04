@@ -1,0 +1,37 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+<sly data-sly-call="${clientLib.all @ categories='registraion-form'}"></sly>
+<h1>Registration Form</h1>
+<div class="container">
+  <form>
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" value="John"><br>
+
+
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname" value="Doe"><br>
+
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email" value="abc@gmail.com"><br>
+
+    <label for="phoneNumber">Phone Number:</label><br>
+    <input type="text" id="phoneNumber" name="phoneNumber" value="8877878388"><br>
+
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address" value="Pune,kharadi"><br>
+
+    <label for="zipCode">Zip Code:</label><br>
+    <input type="text" id="zipCode" name="zipCode" value="878763"><br><br>
+    <input type="submit" id ="submit-btn" value="Submit">
+    <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <p>Form Submitted Successfully.</p>
+      </div>
+    </div>
+  </div>
+
+</form>
+</div>
+
+

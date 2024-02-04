@@ -1,0 +1,14 @@
+
+<h1>First Basic Component</h1>
+<h1>${properties.firstname}</h1>
+<h1>${properties.lastname}</h1>
+<h1>${properties.text}</h1>
+<div data-sly-use.FetchStateInfo="com.javadoubts.core.models.BasicComponentModel">
+    <ul data-sly-list.fetchstateValue="${FetchStateInfo.stateInfo}">
+        <li>${fetchstateValue.state}</li>
+        <li>${fetchstateValue.cm}</li>
+        <ul data-sly-list.cityinfo="${fetchstateValue.cityInfo}">
+            <li>${cityinfo.city}</li>
+        </ul>
+    </ul>
+</div>

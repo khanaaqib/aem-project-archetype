@@ -1,0 +1,31 @@
+
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+<sly data-sly-call="${clientLib.all @ categories='registered-user-from'}"></sly>
+<h1> Registered User Data Form</h1>
+<form data-sly-use.fetchUserData="com.javadoubts.core.models.RegisteredUserDataModel" target="_blank">
+  <table id="customers">
+    <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>User Info</th>
+      <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <div data-sly-list.userData ="${fetchUserData.message}">
+      <tr>
+        <td>${userData.firstName}</td>
+        <td>${userData.lastName}</td>
+        <td>${userData.Email}</td>
+        <td><input type="button"  id="user-button" onclick="location.href='/content/practice/us/en/userprofile.html?userData=${userData.firstName @context='scriptString'}-${userData.lastName @context='scriptString'}-${userData.Email @context='scriptString'}'" value="UserInformation"></td>
+        <td><input type="button"  id="edit-button" onclick="location.href='/content/practice/us/en/userprofile.html?userData=${userData.firstName @context='scriptString'}-${userData.lastName @context='scriptString'}-${userData.Email @context='scriptString'}'" value="Edit"></td>
+      </tr>
+    </div>
+    </tbody>
+  </table>
+</form>
+
+
+

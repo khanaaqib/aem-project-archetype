@@ -1,0 +1,20 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+<sly data-sly-call="${clientLib.all @ categories='user-profile-component'}"></sly>
+<h2 style="text-align:center">User Profile Card</h2>
+<div class="card" data-sly-use.userDataValueCheck ="com.javadoubts.core.models.UserProfileModel">
+     <div data-sly-list.userrelatedData ="${userDataValueCheck.response}">
+          <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
+           <h1 class="title">${userrelatedData.firstName}</h1>
+           <h1 class="title">${userrelatedData.lastName}</h1>
+           <h1 class="title">${userrelatedData.Email}</h1>
+           <h1 class="title">${userrelatedData.PhoneNumber}</h1>
+           <h1 class="title">${userrelatedData.Address}</h1>
+           <h1 class="title">${userrelatedData.ZipCode}</h1>
+         <div style="margin: 24px 0;">
+             <a href="#"><i class="fa fa-dribbble"></i></a>
+             <a href="#"><i class="fa fa-twitter"></i></a>
+             <a href="#"><i class="fa fa-linkedin"></i></a>
+             <a href="#"><i class="fa fa-facebook"></i></a>
+         </div>
+     </div>
+</div>

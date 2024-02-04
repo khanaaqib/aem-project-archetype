@@ -1,0 +1,12 @@
+<h1>Hello World!</h1>
+<h1>${properties.fname}</h1>
+<h1>${properties.lastName}</h1>
+<div data-sly-use.StateData = "com.javadoubts.core.models.JanuaryComponentModel">
+     <ul data-sly-list.stateValue="${StateData.stateInformation}">
+         <li>${stateValue.state}</li>
+         <ul data-sly-list.cityValue = "${stateValue.cityInformation}">
+             <li>${cityValue.city}</li>
+         </ul>
+     </ul>
+     <div>${StateData.firstNameFetch}</div>
+</div>

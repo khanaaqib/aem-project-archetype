@@ -1,0 +1,8 @@
+<h1>Training Config Placeholder</h1>
+<div data-sly-use.fetchCOnfigValue="com.javadoubts.core.models.TraningModel">
+    <h4>${fetchCOnfigValue.fname}</h4>
+    <h4>${fetchCOnfigValue.lname}</h4>
+    <ul data-sly-list.fetchPhone = "${fetchCOnfigValue.phone}">
+        <li>${fetchPhone}</li>
+    </ul>
+</div>

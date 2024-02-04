@@ -1,0 +1,11 @@
+<h1> MULTIFIELD COMPONENT</h1>
+<h4>${properties.fname}</h4>
+<div data-sly-use.fetchMulti ="com.javadoubts.core.models.TestMultifieldModel">
+    <ul data-sly-list.fetchState ="${fetchMulti.state}">
+      <li>${fetchState.stateInfo}</li>
+        <li>${fetchState.zipcode}</li>
+        <ul data-sly-list.fetchCity ="${fetchState.city}">
+            <li>${fetchCity.cityInfo}</li>
+        </ul>
+    </ul>
+</div>
