@@ -85,4 +85,24 @@ public class UserRegistrationFormServiceImpl implements UserRegistrationFormServ
         }
         return listValue;
     }
+
+    @Override
+    public List getSpecificRecord(SlingHttpServletRequest request, String userInfo) {
+        List<Map<String, String>> list = new ArrayList<>();
+        ResourceResolver resourceResolver = request.getResourceResolver();
+        String nodeLoaction= "/content/practice/user-registration-data" + "/" + userInfo;
+        Resource resource = resourceResolver.getResource(nodeLoaction);
+        Map<String,String> map = new HashMap<>();
+        ValueMap valueMap = resource.adaptTo(ValueMap.class);
+        map.put("firstName", valueMap.get("firstName",String.class));
+        map.put("lastName", valueMap.get("lastName",String.class));
+        map.put("email", valueMap.get("email",String.class));
+        map.put("contactNumber", valueMap.get("contactinfo",String.class));
+
+        map.put("Zipcode", valueMap.get("zipcode",String.class));
+        map.put("Address", valueMap.get("address",String.class));
+        map.put("Comment", valueMap.get("comment",String.class));
+        list.add(map);
+        return list;
+    }
 }

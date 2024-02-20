@@ -5,25 +5,27 @@
 <body>
 <table class="custom-table" id="customers" data-sly-use.tableVlaue ="com.javadoubts.core.models.UserDetailFormModel">
 
-  <thead>
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Contact No</th>
-  </tr>
-  </thead>
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Contact No</th>
+        <th>User Profile</th>
+    </tr>
+    </thead>
 
- <tbody>
-  <div data-sly-list.response="${tableVlaue.responseValue}">
-  <tr>
-    <td>${response.firstName}</td>
-    <td>${response.lastName}</td>
-    <td>${response.email}</td>
-    <td>${response.conactNo}</td>
-  </tr>
-  </div>
-<tbody>
+    <tbody>
+    <div data-sly-list.response="${tableVlaue.responseValue}">
+        <tr>
+            <td>${response.firstName}</td>
+            <td>${response.lastName}</td>
+            <td>${response.email}</td>
+            <td>${response.conactNo}
+            <td><input type="submit" value="userProfile" id="user-profile-button" onclick="location.href='/content/practice/us/en/userprofilepage.html?userProfile=${response.firstName @context='scriptString'}-${response.lastName @context='scriptString'}-${response.email @context='scriptString'}'"></td>
+        </tr>
+    </div>
+    <tbody>
 </table>
 </body>
 </html>
