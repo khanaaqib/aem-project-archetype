@@ -4,27 +4,18 @@ $(document).ready(function(){
       var firstNameValue =  $("#fname").val();
       var lastNameValue =  $("#lname").val();
       var emailAddress =  $("#email").val();
-      var contactinformation =  $("#contactInfo").val();
-      var Address =  $("#address").val();
-      var zipCode =  $("#zipcode").val();
-      var comment =  $("#comments").val();
 
       $.ajax({
-          url: "/bin/user/userInfo/userRegistrationForm",
+          url: "/bin/user/userForm",
           type: "POST",
           data:{
           	firstName:firstNameValue,
             lastName : lastNameValue,
-            email :emailAddress,
-            contactNo : contactinformation,
-            address : Address,
-            zipcode: zipCode,
-            Comment: comment
-
+            email :emailAddress
           },
           success: function(result){
-            if(result==="user is already registered"){
-              alert("user is already registered");
+            if(result==="user is already present"){
+              alert("user is already present");
             } else{
                alert("New user is added");
             }

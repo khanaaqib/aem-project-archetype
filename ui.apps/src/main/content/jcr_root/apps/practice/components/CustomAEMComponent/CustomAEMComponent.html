@@ -1,0 +1,23 @@
+
+
+
+<h1>${properties.title}</h1>
+<p>${properties.subtitle}</p>
+<p>${properties.desc}</p>
+<p>${properties.country}</p>
+<div data-sly-use.fetchValue="com.javadoubts.core.models.CustomMultifieldModel">
+    <table>
+        <tr>
+            <ul data-sly-list.multifieldValue = "${fetchValue.stateInformation}">
+                    <td style="width:15%;">
+                        <li>${multifieldValue.state}</li>
+                        <li>${multifieldValue.cm}</li>
+                        <img src="${multifieldValue.imagePath}" alt="${multifieldValue.imageAltText}" width="100" height="150">
+                        <ul data-sly-list.cityInfo="${multifieldValue.cityInformation}">
+                            <li>${cityInfo.city}</li>
+                        </ul>
+                    </td>
+            </ul>
+        </tr>
+    </table>
+</div>

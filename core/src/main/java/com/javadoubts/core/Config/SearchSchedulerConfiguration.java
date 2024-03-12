@@ -21,4 +21,10 @@ public @interface SearchSchedulerConfiguration {
             description = "scheduler Name field"
     )
     String schedulerName();
+
+    @AttributeDefinition(
+            name ="api endpoint",
+            description = "this is the api endpoint field"
+    )
+    String getUrlEndpoint();
 }

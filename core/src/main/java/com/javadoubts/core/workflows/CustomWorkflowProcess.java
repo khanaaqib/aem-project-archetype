@@ -10,20 +10,38 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+
 @Component(service = WorkflowProcess.class,
           property = {"process.label=Custom workflow Process"}
 )
 public class CustomWorkflowProcess implements WorkflowProcess {
     private Logger log = LoggerFactory.getLogger(DemoPathPostServlet.class);
+
+
+
     @Override
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap metaDataMap) throws WorkflowException {
-            String[] argument = metaDataMap.get("PROCESS_ARGS",String.class).split(",");
-            for(int i=0;i<argument.length;i++){
+        Session session = workflowSession.adaptTo(Session.class);
+        String payload = (String) workItem.getWorkflow().getWorkflowData().getPayload();
+        Node node = null;
+        try {
+            node = session.getNode("/content");
+
+            String[] argument = metaDataMap.get("PROCESS_ARGS", String.class).split(",");
+            for (int i = 0; i < argument.length; i++) {
                 String[] dialogvalues = argument[i].split(":");
                 String key = dialogvalues[0];
                 String value = dialogvalues[1];
-                log.info("fields name value fetch:{}:{}-->",key,value);
+                node.setProperty(key, value);
+                log.info("fields name value fetch:{}:{}-->", key, value);
             }
-            log.info("dialog value fetch:{}-->",argument);
+        }
+            catch (RepositoryException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

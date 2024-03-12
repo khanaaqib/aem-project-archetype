@@ -1,0 +1,14 @@
+<h1>Image Carousel Placeholder</h1>
+<div class="image-carousel ${properties.color}">
+<h2>${properties.title}</h2>
+<h4>${properties.desc}</h4>
+<div data-sly-use.fetchModelValue = "com.javadoubts.core.models.ImageCarouselMultifieldModel">
+    <div data-sly-list.listValueCheck = "${fetchModelValue.ImageInformation}">
+          <h4>${listValueCheck.imageTitle}</h4>
+          <h4>${listValueCheck.imagedesc}</h4>
+          <img src="${listValueCheck.imagePath}" alt="Image Title", height="100px" , width="150px">
+    </div>
+</div>
+</div>
+
+

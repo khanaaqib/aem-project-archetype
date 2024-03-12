@@ -10,32 +10,33 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
 import org.osgi.service.component.annotations.Component;
+import sun.tools.serialver.SerialVer;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.IOException;
 
-
 @Component(service = Servlet.class)
 @SlingServletPaths(
-        value = "/bin/kds/customworkflow"
+        value = "/bin/trigger/CustomServlet"
 )
-public class StartCustomWorkflow extends SlingAllMethodsServlet {
+public class TriggerAemWorkflow extends SlingAllMethodsServlet {
+
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-        String payloadPath = request.getParameter("page");
-        String status = "workflow triggered succussfully";
+       String payload = request.getParameter("pagePath");
+       String status = "workflow executed successfully";
         ResourceResolver resourceResolver = request.getResourceResolver();
-        if(payloadPath!=null){
+        if(payload!=null){
             WorkflowSession workflowSession = resourceResolver.adaptTo(WorkflowSession.class);
             try {
                 WorkflowModel workflowModel = workflowSession.getModel("/var/workflow/models/Demo-AEM-Workflow");
-                WorkflowData workflowData = workflowSession.newWorkflowData("JCR_PATH",payloadPath);
+                WorkflowData workflowData = workflowSession.newWorkflowData("JCR_PATH",payload);
                 workflowSession.startWorkflow(workflowModel,workflowData);
             } catch (WorkflowException e) {
                 throw new RuntimeException(e);
             }
-            response.getWriter().write(status);
         }
+        response.getWriter().write(status);
     }
 }
