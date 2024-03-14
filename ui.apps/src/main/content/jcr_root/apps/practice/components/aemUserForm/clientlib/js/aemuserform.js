@@ -12,7 +12,8 @@ $(document).ready(function(){
                firstName : firstName,
                lastName : lastName,
                Email: email,
-               Address: address
+               Address: address,
+               user : "aem-user-form"
            },
            success: function(result){
                 alert("success");

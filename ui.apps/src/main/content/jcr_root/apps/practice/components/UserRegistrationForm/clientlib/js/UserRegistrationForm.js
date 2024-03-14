@@ -11,11 +11,12 @@ $(document).ready(function(){
           data:{
           	firstName:firstNameValue,
             lastName : lastNameValue,
-            email :emailAddress
+            Email :emailAddress,
+            user : 'user-data'
           },
           success: function(result){
-            if(result==="user is already present"){
-              alert("user is already present");
+            if(result==="user is present"){
+              alert("user is present");
             } else{
                alert("New user is added");
             }
