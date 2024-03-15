@@ -10,10 +10,9 @@ $(document).ready(function(){
            type: 'POST',
            data: {
                firstName : firstName,
-               lastName : lastName,
+               lastName :lastName,
                Email: email,
                Address: address,
-               user : "aem-user-form"
            },
            success: function(result){
                 alert("success");
