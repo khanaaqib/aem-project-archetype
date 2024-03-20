@@ -1,5 +1,6 @@
 package com.javadoubts.core.serviceImpl;
 
+import com.day.cq.dam.api.AssetManager;
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
@@ -16,6 +17,10 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +31,11 @@ public class QueryBuilderSearchServiceImpl implements QueryBuilderSearchService 
     @Reference
     QueryBuilder queryBuilder;
 
+    @Reference
+    AssetManager assetManager;
+
     @Override
-    public JSONArray getSearchResult( ResourceResolver resourceResolver) throws RepositoryException, JSONException {
+    public void getSearchResult( ResourceResolver resourceResolver) throws RepositoryException, JSONException, FileNotFoundException {
         Map<String, String> queryMapVlaue = new HashMap<>();
         queryMapVlaue.put("type","cq:Page");
         queryMapVlaue.put("path","/content/practice/us/en/aempage");
@@ -43,6 +51,11 @@ public class QueryBuilderSearchServiceImpl implements QueryBuilderSearchService 
             jsonObject.put("date",page.getLastModified().getTime());
             jsonArray.put(jsonObject);
         }
-        return jsonArray;
+        String fileName = "siteMap.xml";
+        File file = new File(fileName);
+        InputStream inputStream = new FileInputStream(file);
+        assetManager.createAsset("/content/dam/practice/sitemap/" + fileName, inputStream, "application/xml", true);
+
+
     }
 }

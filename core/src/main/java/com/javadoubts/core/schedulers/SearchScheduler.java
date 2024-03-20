@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jcr.RepositoryException;
+import java.io.FileNotFoundException;
 
 @Component(service = Runnable.class,immediate = true)
 @Designate(ocd= SearchSchedulerConfiguration.class)
@@ -59,13 +60,15 @@ public class SearchScheduler implements Runnable{
     public void run() {
         try {
             ResourceResolver resourceResolver = fetchResourceService.getResourceResolver();
-            JSONArray jsonArray = queryBuilderSearchService.getSearchResult(resourceResolver);
-            logger.info("JSON ARRAY VALUE CHEKC:----->{}",jsonArray);
+            queryBuilderSearchService.getSearchResult(resourceResolver);
+
         } catch (LoginException e) {
             throw new RuntimeException(e);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         } catch (RepositoryException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e){
             throw new RuntimeException(e);
         }
 

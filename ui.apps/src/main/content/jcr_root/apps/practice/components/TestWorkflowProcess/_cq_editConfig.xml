@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    jcr:primaryType="cq:EditConfig"
     cq:dialogMode="floating"
-    cq:inherit="{Boolean}true"
-    jcr:primaryType="cq:EditConfig">
+     cq:inherit="{Boolean}true">
     <cq:formParameters
         jcr:primaryType="nt:unstructured"
-        jcr:title="Custom Workflow Process Step"
-        PROCESS="com.javadoubts.core.workflows.customeDemoWOrkflowProcessStep"
+        jcr:title="Test Workflow Process"
+        PROCESS="com.javadoubts.core.workflows.TestWorkflowProcess"
         PROCESS_AUTO_ADVANCE="{Boolean}true"/>
 </jcr:root>

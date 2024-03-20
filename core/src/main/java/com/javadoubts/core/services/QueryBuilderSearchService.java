@@ -5,7 +5,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import javax.jcr.RepositoryException;
+import java.io.FileNotFoundException;
 
 public interface QueryBuilderSearchService {
-    public JSONArray getSearchResult(ResourceResolver resourceResolver) throws RepositoryException, JSONException;
+    public void getSearchResult(ResourceResolver resourceResolver) throws RepositoryException, JSONException, FileNotFoundException;
 }

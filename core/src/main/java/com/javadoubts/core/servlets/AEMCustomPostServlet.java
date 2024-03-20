@@ -20,7 +20,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 @Component(service = Servlet.class)
 @SlingServletPaths(
-        value="/bin/post/customServlet"
+        value="/bin/post/customServlet1"
 )
 public class AEMCustomPostServlet extends SlingAllMethodsServlet {
 
@@ -29,6 +29,7 @@ public class AEMCustomPostServlet extends SlingAllMethodsServlet {
 
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+
         String responseVlaue = service.addUsertoNode(request);
         response.getWriter().write(responseVlaue);
     }

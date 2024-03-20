@@ -1,40 +1,41 @@
 package com.javadoubts.core.servlets;
 
-import com.javadoubts.core.services.QueryBuilderSearchService;
+import com.javadoubts.core.services.CustomSiteMapService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import javax.jcr.RepositoryException;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.util.List;
+
 @Component(service = Servlet.class)
 @SlingServletPaths(
-        value = "/bin/query/QueryBuilderServlet"
+        value ="/bin/site/sitemapServlet"
 )
-public class QueryBuilderSearchServlet extends SlingAllMethodsServlet {
-
+public class SiteMapServlet extends SlingAllMethodsServlet {
     @Reference
-    QueryBuilderSearchService service;
+    CustomSiteMapService customSiteMapService;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-        ResourceResolver resourceResolver = request.getResourceResolver();
-        JSONArray pagePathvalue=null;
+        List<String> message=null;
         try {
-            service.getSearchResult(resourceResolver);
-        } catch (RepositoryException e) {
+            message= customSiteMapService.getPageResult();
+        } catch (LoginException e) {
             throw new RuntimeException(e);
-        } catch (JSONException e) {
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
+        } catch (TransformerException e) {
             throw new RuntimeException(e);
         }
-        response.getWriter().write(pagePathvalue.toString());
+        response.getWriter().write(message.toString());
     }
 }

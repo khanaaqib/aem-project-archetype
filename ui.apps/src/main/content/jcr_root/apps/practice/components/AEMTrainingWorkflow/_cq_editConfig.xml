@@ -5,7 +5,7 @@
     jcr:primaryType="cq:EditConfig">
     <cq:formParameters
         jcr:primaryType="nt:unstructured"
-        jcr:title="Custom Workflow Process Step"
-        PROCESS="com.javadoubts.core.workflows.customeDemoWOrkflowProcessStep"
+        jcr:title="AEM Training Workflow"
+        PROCESS="com.javadoubts.core.workflows.AEMTrainingWorkflow"
         PROCESS_AUTO_ADVANCE="{Boolean}true"/>
 </jcr:root>
