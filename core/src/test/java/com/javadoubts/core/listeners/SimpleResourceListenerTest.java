@@ -31,7 +31,6 @@ import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 
 class SimpleResourceListenerTest {
-
     private SimpleResourceListener fixture = new SimpleResourceListener();
 
     private TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());

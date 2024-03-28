@@ -13,6 +13,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.Arrays;
 
 @Component(service = Servlet.class)
 @SlingServletPaths(
@@ -27,7 +28,7 @@ public class SimpleAEMJavaServlet extends SlingAllMethodsServlet {
     @Activate
     protected void activate(SimpleAEMJavaOsgiConfiguration configuration){
         url = configuration.getURLEndpoint();
-        key= configuration.getClientId();
+        key= Arrays.toString(configuration.getClientId());
     }
 
     @Override

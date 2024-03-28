@@ -1,6 +1,7 @@
 package com.javadoubts.core.servlets;
 
 import com.javadoubts.core.services.AEMCustomFormService;
+import com.javadoubts.core.services.AEMSimpleFormService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
@@ -18,11 +19,11 @@ import java.io.IOException;
 public class RegirstrationFormServlet extends SlingAllMethodsServlet {
 
     @Reference
-    AEMCustomFormService customFormService;
+    AEMSimpleFormService aemSimpleFormService;
 
     @Override
     protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-         String responseCheck=customFormService.addUsertoNode(request);
+         String responseCheck=aemSimpleFormService.addFormDataToNode(request);
          response.getWriter().write(responseCheck);
     }
 }

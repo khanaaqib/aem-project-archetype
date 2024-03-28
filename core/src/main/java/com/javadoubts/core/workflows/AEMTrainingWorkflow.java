@@ -19,7 +19,7 @@ public class AEMTrainingWorkflow implements WorkflowProcess {
 
     @Override
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap metaDataMap) throws WorkflowException {
-         String argumentValue = metaDataMap.get("title","not set");
+         String argumentValue = metaDataMap.get("title",String.class);
          logger.info("aem training workflow argument check:{}",argumentValue);
     }
 }

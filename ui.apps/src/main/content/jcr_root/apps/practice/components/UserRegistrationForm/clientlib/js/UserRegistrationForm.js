@@ -15,8 +15,8 @@ $(document).ready(function(){
             user : 'user-data'
           },
           success: function(result){
-            if(result==="user is present"){
-              alert("user is present");
+            if(result==="user is already existt"){
+              alert("user is already exist");
             } else{
                alert("New user is added");
             }

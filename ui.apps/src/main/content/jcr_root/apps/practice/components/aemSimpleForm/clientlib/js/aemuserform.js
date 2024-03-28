@@ -13,9 +13,15 @@ $(document).ready(function(){
                lastName :lastName,
                Email: email,
                Address: address,
+               user : 'aem-simple-form-Info'
            },
            success: function(result){
-                alert("success");
+                if(result=="user is already exist"){
+                    alert("user is already exist");
+                } else{
+                    alert("new user added");
+                }
+
   		   },
            error: function(error){
                alert("failure");
