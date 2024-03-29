@@ -1,0 +1,12 @@
+<h1>First Component</h1>
+<h1>${properties.title}</h1>
+<h4>${properties.desc}</h4>
+<div data-sly-use.fetchStateValue="com.javadoubts.core.models.AemFirstComponentModel">
+    <ul data-sly-list.stateVlauecheck = "${fetchStateValue.StateInformation}">
+        <li>${stateVlauecheck.state}</li>
+        <li>${stateVlauecheck.cm}</li>
+        <ul data-sly-list.cityValueCheck="${stateVlauecheck.CityInformation}">
+             <li>${cityValueCheck.city}</li>
+        </ul>
+    </ul>
+</div>
