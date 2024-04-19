@@ -1,0 +1,13 @@
+<h1>Text To Speech Component</h1>
+
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+<sly data-sly-call="${clientLib.all @ categories='text-to-speech-form'}"></sly>
+<form id="textToSpeechForm">
+    <label for="textInput">Enter Text:</label>
+    <textarea id="textInput" name="text" required></textarea>
+    <button type="submit">Convert to Speech</button>
+</form>
+
+<audio id="audioPlayer" controls style="display:none;">
+    Your browser does not support the audio element.
+</audio>

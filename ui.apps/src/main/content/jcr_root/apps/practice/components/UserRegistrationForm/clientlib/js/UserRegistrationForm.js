@@ -6,13 +6,12 @@ $(document).ready(function(){
       var emailAddress =  $("#email").val();
 
       $.ajax({
-          url: "/bin/user/userForm",
+          url: "/bin/kds/TestServlet",
           type: "POST",
           data:{
           	firstName:firstNameValue,
             lastName : lastNameValue,
             Email :emailAddress,
-            user : 'user-data'
           },
           success: function(result){
             if(result==="user is already existt"){
