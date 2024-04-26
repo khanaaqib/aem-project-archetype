@@ -10,6 +10,11 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.Servlet;
@@ -32,16 +37,35 @@ public class TestServlet extends SlingAllMethodsServlet {
     private static String SECRET_KEY = "";
 
     @Override
-    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
         JSONObject jsonObject = new JSONObject();
+        StringBuffer responseValue=null;
         try {
-            jsonObject.put("firstName",request.getParameter("firstName"));
-            jsonObject.put("lastName",request.getParameter("lastName"));
-            jsonObject.put("Email",request.getParameter("Email"));
-        } catch (JSONException e) {
+            URL obj = new URL("https://jsonplaceholder.typicode.com/posts");
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
+            int responseCode = con.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                responseValue = new StringBuffer();
+
+                while ((inputLine = in.readLine()) != null) {
+                    responseValue.append(inputLine);
+                }
+                in.close();
+
+                // print result
+                System.out.println(responseValue.toString());
+            } else {
+                System.out.println("GET request did not work.");
+            }
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        String payload = jsonObject.toString();
+        String payload = responseValue.toString();
 
         // Encrypt the payload
         String encryptedPayload = null;

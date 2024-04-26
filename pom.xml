@@ -1268,6 +1268,13 @@ Bundle-DocURL:
         <scope>provided</scope>
                     
       </dependency>
+	  
+	  <dependency>
+		<groupId>com.auth0</groupId>
+		<artifactId>mvc-auth-commons</artifactId>
+		<version>[1.0, 2.0)</version>
+		<scope>provided</scope>
+	  </dependency>
                   
       <dependency>
                         

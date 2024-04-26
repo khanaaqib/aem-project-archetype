@@ -6,7 +6,11 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -20,20 +24,23 @@ import java.net.URL;
 
 @Component(service = Servlet.class)
 @SlingServletPaths(
-        value = "/bin/texttospeech"
+        value = "/bin/kds/texttospeech"
 )
 public class TextToSpeechServlet extends SlingAllMethodsServlet {
 
+    private Logger logger = LoggerFactory.getLogger(TextToSpeechServlet.class);
+
     @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
-        String text = request.getParameter("text");
-        if (text == null || text.isEmpty()) {
+    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+        String textValue = request
+                .getParameter("textValue");
+        if (textValue == null || textValue.isEmpty()) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
 
         // Replace this with your Rapid API endpoint
-        String rapidApiEndpoint = "https://text-to-speech-multiple-languages-voices1.p.rapidapi.com/voice_type/Studio/convert";
+        String rapidApiEndpoint = "https://text-to-speech67.p.rapidapi.com/tts";
 
         // Replace 'apiKey' with your Rapid API key
         String apiKey = "d65343a67fmsh3984b6954167bf6p18a119jsne17941d2da2e";
@@ -43,13 +50,14 @@ public class TextToSpeechServlet extends SlingAllMethodsServlet {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
             connection.setRequestProperty("X-RapidAPI-Key", apiKey);
             connection.setDoOutput(true);
-
-            String requestBody = "{\n" +
-                    "\t\tvoice_name: 'en-US-Studio-M',\n" +
-                    "\t\ttext: 'Hello world!'\n" +
-                    "\t}";
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("text",textValue);
+            jsonObject.put("voice","en-GB-SoniaNeural");
+            String requestBody = jsonObject.toString();
+            logger.info("payload Value Check:{}",requestBody);
             connection.getOutputStream().write(requestBody.getBytes());
 
             InputStream inputStream = connection.getInputStream();
@@ -57,12 +65,16 @@ public class TextToSpeechServlet extends SlingAllMethodsServlet {
 
             response.setContentType("audio/mpeg");
             response.setContentLength(audioBytes.length);
+
             ServletOutputStream outputStream = response.getOutputStream();
+            logger.info("output data{}",audioBytes);
             outputStream.write(audioBytes);
             outputStream.flush();
         } catch (IOException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             e.printStackTrace(response.getWriter());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
     }
 }
