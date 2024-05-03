@@ -1,35 +1,34 @@
 $(document).ready(function(){
         var form = document.getElementById('textToSpeechForm');
         var audioPlayer = document.getElementById('audioPlayer');
-        var textValue = $("#text")
-        form.addEventListener('submit', function (event) {
+        form.addEventListener('submit', async function (event) {
             event.preventDefault();
-              $.ajax({
-                  async: true,
-                  url: "/bin/kds/texttospeech",
-                  type: "POST",
-                  crossDomain: true,
-                  data:{
-                    textValue:textValue,
-                  },
-                  success: function(result){
-                    if(result==="user is already existt"){
-                      alert("user is already exist");
-                    } else{
-                       var blob = new Blob([result], { type: "application/octetstream" });
-                       var url = window.URL || window.webkitURL;
-                       var objectURL = url.createObjectURL(blob);
-                       audioPlayer.src = objectURL;
-                       audioPlayer.style.display = 'block';
-                       audioPlayer.play();
-                       alert("New user is added");
-                    }
+             var text = $("#textInput").val().trim();
+                     if (text) {
+                         var xhr = new XMLHttpRequest();
+                         xhr.open("POST", "/bin/ks/TextToSpeech", true); // Update the URL
+                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                         xhr.responseType = "blob";
 
-                  },
-                  error: function(error){
-                   console.log("form failure");
-                  }
-              });
+                         xhr.onload = function() {
+                             if (xhr.status === 200) {
+                                 var blob = new Blob([xhr.response], { type: "audio/mpeg" });
+                                 var audioURL = URL.createObjectURL(blob);
+                                 audioPlayer.src = audioURL;
+                                 audioPlayer.play();
+                             } else {
+                                 console.error("Error:", xhr.statusText);
+                             }
+                         };
+
+                         xhr.onerror = function() {
+                             console.error("Request failed");
+                         };
+
+                         xhr.send("text=" + encodeURIComponent(text));
+                     } else {
+                         console.error("Text input is empty");
+                     }
 
         });
 
