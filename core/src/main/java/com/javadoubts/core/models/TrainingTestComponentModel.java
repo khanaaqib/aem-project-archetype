@@ -17,4 +17,15 @@ public class TrainingTestComponentModel {
     @Inject
     private List<ImageModel> imageCarousel;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public List<ImageModel> getImageCarousel() {
+        return imageCarousel;
+    }
 }

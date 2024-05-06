@@ -1,0 +1,13 @@
+<div data-sly-use.testCompData="com.javadoubts.core.models.TrainingTestComponentModel">
+    <h1>${testCompData.title}</h1>
+    <h4>${testCompData.subtitle}</h4>
+    <div data-sly-list.fetchData="${testCompData.imageCarousel}">
+        <img src="${fetchData.image}" alt="Image field" height="60%" width="40%">
+        <h1>${fetchData.imageTitle}</h1>
+        <h4>${fetchData.imageSubTitle}</h4>
+        <button>${fetchData.ctabutton}</button>
+        <div data-sly-list.fetchNestedData="${fetchData.imageSubCarousel}">
+            <h1>${fetchNestedData.subimageTitle}</h1>
+        </div>
+    </div>
+</div>

@@ -30,7 +30,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                             fieldLabel="Image"
-                            name="./name"/>
+                            name="./image"/>
                         <imageTitle
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -41,6 +41,28 @@
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Image SubTitle"
                             name="./imageSubTitle"/>
+                        <ctaButton
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="CTA Button"
+                            name="./ctabutton"/>
+                        <ImageSubCarousel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                            composite="{Boolean}true">
+                            <field
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                name="./imageSubCarousel">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <subimageTitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Sub Image Title"
+                                        name="./subimageTitle"/>
+                                </items>
+                            </field>
+                        </ImageSubCarousel>
                     </items>
                 </field>
             </imageCarousel>
