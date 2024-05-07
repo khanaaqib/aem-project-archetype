@@ -4,7 +4,12 @@ $(document).ready(function(){
         var audioPlayer = document.getElementById('audioPlayer');
         form.addEventListener('submit', async function (event) {
             event.preventDefault();
-             var text = $("#textInput").val().trim()
+            var text='';
+             var allText = document.getElementsByTagName("p");
+             for(var i = 0, max = allText.length; i < max; i++)
+             {
+                 text=text + " " + allText[i].innerText;
+             }
              var myJson = '{\r\n    "lang": "english_us",\r\n "voice": "female_1"\r\n}';
              var obj  = JSON.parse(myJson);
              var newuser = "text";
