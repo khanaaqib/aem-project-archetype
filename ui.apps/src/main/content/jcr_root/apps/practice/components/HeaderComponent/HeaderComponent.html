@@ -1,0 +1,11 @@
+<div data-emptytext="Header Component" class="cq-placeholder">
+  <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"></sly>
+  <sly data-sly-call="${clientLib.css @ categories='Header-Component'}"></sly>
+  <sly data-sly-use.headerElememt="com.javadoubts.core.models.HeaderComponent">
+  <div class="header logo">
+          <img src="${headerElememt.logoimg}" alt="Logo"/>
+       <div class="header-right" data-sly-list.navItem="${headerElememt.navigation}">
+            <a href="${navItem.headerlink}">${navItem.headertitle}</a>
+       </div>
+  </div>
+  </sly>

@@ -1,9 +1,12 @@
-<div data-sly-use.fetchData="com.javadoubts.core.models.DemoAEMMultifieldComponentModel">
-    <h1>${fetchData.title}</h1>
-    <div data-sly-list.childInfo="${fetchData.imageDetail}">
-         <img src="${childInfo.image}" alt="custom image" height="100px" width="150px">
-         <h1>${childInfo.imageTitle}</h1>
-         <h4>${childInfo.imageDesc}</h4>
-         <button>${childInfo.imagecta}</button><br>
-    </div>
+<div class="names-list">
+    <h1>Names List</h1>
+    <ul>
+        <!-- Define and iterate over a hardcoded array of names -->
+        <li data-sly-list.name="${['Alice', 'Bob', 'Charlie']}">
+            ${name}
+        </li>
+    </ul>
 </div>
+
+
+

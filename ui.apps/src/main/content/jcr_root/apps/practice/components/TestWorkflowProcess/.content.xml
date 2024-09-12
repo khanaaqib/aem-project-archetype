@@ -3,5 +3,5 @@
     jcr:primaryType="cq:Component"
     jcr:title="Test Workflow Process"
     sling:resourceSuperType="cq/workflow/components/model/process"
-    componentGroup="Workflow"
-    allowedParents="[*/parsys]"/>
+    allowedParents="[*/parsys]"
+    componentGroup="Workflow"/>
